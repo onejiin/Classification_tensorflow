@@ -217,7 +217,7 @@ class CatsVsDogsFeatureReader(BaseReader):
       tf.add_to_collection("serialized_examples", serialized_examples)
       return self.prepare_serialized_examples_rotL(serialized_examples)
 
-  def prepare_serialized_examples_rotL(self, serialized_examples, width=227, height=227, channels=3):
+  def prepare_serialized_examples_rotL(self, serialized_examples, width=32, height=32, channels=3):
       # set the mapping from the fields to data types in the proto
       feature_map = {
           'image/encoded': tf.FixedLenFeature((), tf.string, default_value=''),
@@ -271,7 +271,7 @@ class CatsVsDogsTestFeatureReader(BaseReader):
     tf.add_to_collection("serialized_examples", serialized_examples)
     return self.prepare_serialized_examples(serialized_examples)
 
-  def prepare_serialized_examples(self, serialized_examples, width=227, height=227, channels=3):
+  def prepare_serialized_examples(self, serialized_examples, width=32, height=32, channels=3):
     # set the mapping from the fields to data types in the proto
     feature_map = {
            'image/encoded': tf.FixedLenFeature((), tf.string, default_value=''),

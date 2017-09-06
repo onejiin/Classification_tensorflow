@@ -620,15 +620,6 @@ class Trainer(object):
 
     return tf.train.Saver(max_to_keep=0, keep_checkpoint_every_n_hours=0.25)
 
-  def load_with_skip(self, data_path, session, skip_layer):
-      data_dict = np.load(data_path).item()
-      for key in data_dict:
-          if key not in skip_layer:
-              with tf.variable_scope(key, reuse=True):
-              #with tf.variable_scope('tower/conv1', reuse=True):
-                  for subkey, data in zip(('weights', 'biases'), data_dict[key]):
-                      session.run(tf.get_variable(subkey).assign(data))
-
 
 def get_reader():
   reader = readers.CatsVsDogsFeatureReader()
